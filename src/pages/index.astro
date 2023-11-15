@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SplitImage from '../components/content/split-image/index';
+import ExpensiveComponent from "../components/content/expensive-component/index"
+import OnlyMobile from "../components/content/only-mobile/index"
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+		<!-- This component's JS will begin importing when the page loads -->
+		<SplitImage client:load />
+		<!-- This component won't render on the server, but will render on the
+		client when the page loads -->
+		<SplitImage imagePosition="right" client:only="react"/>
+		<OnlyMobile client:media='(max-width: 760px)'/>
+		<SplitImage />
+		<!-- This component's JS will not be sent to the client until
+		the user scrolls down and the component is visible on the page -->
+		<ExpensiveComponent client:visible/>
+		<SplitImage />
+		<ExpensiveComponent client:visible/>
+		<SplitImage />
+		<ExpensiveComponent client:visible/>
+	</main>
+</Layout>

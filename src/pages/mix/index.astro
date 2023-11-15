@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Box, Typography } from '@mui/material';
+import ReactButton from "../../react/button/index"
+import SvelteButton from "../../svelte/button/index.svelte"
+import VueButton from "../../vue/button/index.vue"
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+    <Typography variant="h2" mt={10}>Without hydration</Typography>
+    <Box display="flex" gap={4} my={10}>
+      <ReactButton />
+      <SvelteButton />
+      <VueButton />
+    </Box>
+
+    <Typography variant="h2">With hydration</Typography>
+    <Box display="flex" gap={4} mt={10}>
+      <ReactButton client:load />
+      <SvelteButton client:load />
+      <VueButton client:load />
+    </Box>
+
+    <Typography variant="h2" mt={10}>Client only</Typography>
+    <Box display="flex" gap={4} mt={10}>
+      <ReactButton client:only="react" />
+      <SvelteButton client:only="svelte" />
+      <VueButton client:only="vue" />
+    </Box>
+	</main>
+</Layout>

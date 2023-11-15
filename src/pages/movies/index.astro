@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Movies from '../../components/movies/index';
+
+const data = await fetch("https://swapi-graphql.netlify.app/.netlify/functions/index", {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    query: `
+      query Query {
+        allFilms {
+          films {
+            id
+            title
+            director
+            releaseDate
+            speciesConnection {
+              species {
+                name
+                classification
+                homeworld {
+                  name
+                }
+              }
+            }
+            producers
+            episodeID
+            edited
+            created
+          }
+          totalCount
+        }
+      }
+    `
+  })
+});
+
+console.log('data', data)
+const movies = await data.json();
+
+if (movies.errors) {
+  return Astro.redirect("/404");
+
+}
+
+console.log("the movies", movies);
+
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+    <Movies moviesData={movies} />
+	</main>
+</Layout>

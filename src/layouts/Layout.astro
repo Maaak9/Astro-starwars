@@ -1,0 +1,32 @@
+---
+import Header from "../components/header/index";
+import Footer from "../components/footer/index";
+import { Container } from "@mui/material";
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<Header client:load />
+		<div style="min-height: 70vh;">
+			<Container>
+				 <slot />
+			</Container>
+		</div>
+		<Footer />
+	</body>
+</html>
