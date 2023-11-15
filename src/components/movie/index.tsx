@@ -4,13 +4,10 @@ export type MovieProps = {
   movieData: any,
 }
 
-
 const Movie = ({
   movieData,
 }: MovieProps) => {
 
-  console.log('testtests', movieData)
-  const { film } = movieData.data;
   return (
     <Box>
       <Box mt={3}>
@@ -26,13 +23,13 @@ const Movie = ({
         />
       </Box>
       <Box mt={2}>
-        <Typography variant="h1">{film.title}</Typography>
-        <Typography variant="body1">{`Director: ${film.director}`}</Typography>
-        <Typography variant="body1">{`Created: ${film.created}`}</Typography>
-        <Typography variant="body1">{`plot: ${film.openingCrawl}`}</Typography>
+        <Typography variant="h1">{movieData.title}</Typography>
+        <Typography variant="body1">{`Director: ${movieData.director}`}</Typography>
+        <Typography variant="body1">{`Created: ${movieData.created}`}</Typography>
+        <Typography variant="body1">{`plot: ${movieData.openingCrawl}`}</Typography>
       </Box>
       <Box display={"grid"} gap={4} mt={5} gridTemplateColumns="repeat(auto-fill, minmax(250px, 1fr))" >
-        {film.characterConnection.characters.map((character, index) => (
+        {movieData.characterConnection.characters.map((character, index) => (
           <Box key={index} p={2} borderRadius={4} sx={{ backgroundColor: "#f5f5f5" }}>
             <img
               src={`https://source.unsplash.com/random?${character.name}`}
