@@ -3,6 +3,8 @@ import Layout from '../../layouts/Layout.astro';
 import Movies from '../../components/movies/index';
 import { Typography } from '@mui/material';
 
+export const prerender = false;
+
 const data = await fetch("https://swapi-graphql.netlify.app/.netlify/functions/index", {
   method: 'POST',
   headers: {
@@ -38,7 +40,7 @@ const data = await fetch("https://swapi-graphql.netlify.app/.netlify/functions/i
   })
 });
 
-console.log('data', data)
+
 const movies = await data.json();
 
 if (movies.errors) {
@@ -46,13 +48,11 @@ if (movies.errors) {
 
 }
 
-console.log("the movies", movies);
-
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
-    <Typography variant="h4" my={4}>SSG</Typography>
+    <Typography variant="h4" my={4}>SSR</Typography>
     <Movies moviesData={movies} />
 	</main>
 </Layout>
