@@ -6,7 +6,7 @@ import 'react-is';
 import 'react-dom';
 import PropTypes from 'prop-types';
 import { getContrastRatio, lighten, darken, createTheme as createTheme$1, unstable_defaultSxConfig, unstable_styleFunctionSx, useTheme as useTheme$1, useThemeProps as useThemeProps$1, createStyled, shouldForwardProp, alpha, keyframes, unstable_extendSxProp, createBox, createContainer, getPath, css } from '@mui/system';
-import { e as createAstro, f as createComponent, r as renderTemplate, h as addAttribute, i as renderHead, j as renderComponent, k as renderSlot, m as maybeRenderHead } from '../astro_f19d044f.mjs';
+import { e as createAstro, f as createComponent, r as renderTemplate, g as addAttribute, h as renderHead, i as renderComponent, j as renderSlot, m as maybeRenderHead } from '../astro_a9bcd579.mjs';
 import 'html-escaper';
 import { TransitionGroup } from 'react-transition-group';
 
@@ -3722,7 +3722,7 @@ const NavigationLinks = ({}) => {
   return /* @__PURE__ */ jsxs(Fragment, { children: [
     /* @__PURE__ */ jsx(ListItemButton$1, { component: "a", href: "/", children: /* @__PURE__ */ jsx(ListItemText$1, { primary: "Start" }) }),
     /* @__PURE__ */ jsx(ListItemButton$1, { component: "a", href: "/movies", children: /* @__PURE__ */ jsx(ListItemText$1, { primary: "Movies SSG" }) }),
-    /* @__PURE__ */ jsx(ListItemButton$1, { component: "a", href: "/movies", children: /* @__PURE__ */ jsx(ListItemText$1, { primary: "Movies SSR" }) }),
+    /* @__PURE__ */ jsx(ListItemButton$1, { component: "a", href: "/ssr-movies", children: /* @__PURE__ */ jsx(ListItemText$1, { primary: "Movies SSR" }) }),
     /* @__PURE__ */ jsx(ListItemButton$1, { component: "a", href: "/mix", children: /* @__PURE__ */ jsx(ListItemText$1, { primary: "Mix" }) })
   ] });
 };
@@ -3763,33 +3763,54 @@ const $$Layout = createComponent(async ($$result, $$props, $$slots) => {
   return renderTemplate`<html lang="en"> <head><meta charset="UTF-8"><meta name="description" content="Astro description"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator"${addAttribute(Astro2.generator, "content")}><title>${title}</title>${renderHead()}</head> <body> ${renderComponent($$result, "Header", Header, { "client:load": true, "client:component-hydration": "load", "client:component-path": "/Users/marcus.karrman/projects/astro-demo/astro-starwars/src/components/header/index", "client:component-export": "default" })} <div style="min-height: 70vh;"> ${renderComponent($$result, "Container", Container$1, {}, { "default": ($$result2) => renderTemplate` ${renderSlot($$result2, $$slots["default"])} ` })} </div> ${renderComponent($$result, "Footer", Footer, {})} </body></html>`;
 }, "/Users/marcus.karrman/projects/astro-demo/astro-starwars/src/layouts/Layout.astro", void 0);
 
-const Movies = ({
-  moviesData
+const Movie = ({
+  movieData
 }) => {
-  const { films } = moviesData.data.allFilms;
-  return /* @__PURE__ */ jsx(Box$1, { display: "grid", gap: 4, mt: 5, gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))", children: films.map((film, index) => /* @__PURE__ */ jsx("a", { href: `/movies/${film.id}`, style: { color: "inherit" }, children: /* @__PURE__ */ jsxs(Box$1, { p: 2, borderRadius: 4, sx: { backgroundColor: "#f5f5f5" }, children: [
-    /* @__PURE__ */ jsx(
+  return /* @__PURE__ */ jsxs(Box$1, { children: [
+    /* @__PURE__ */ jsx(Box$1, { mt: 3, children: /* @__PURE__ */ jsx(
       "img",
       {
-        src: `https://source.unsplash.com/random/250x250/?star wars${Math.random()}}`,
+        src: `https://source.unsplash.com/random?star wars movie ${Math.floor(Math.random() * 10)}}`,
+        alt: "Your Image",
         style: {
           objectFit: "cover",
           width: "100%",
-          aspectRatio: 1,
-          borderRadius: "16px"
+          height: "100%",
+          aspectRatio: 3 / 1
         }
       }
-    ),
-    /* @__PURE__ */ jsx(Typography$1, { mt: 2, children: film.title }),
-    /* @__PURE__ */ jsx(Typography$1, { children: film.releaseDate })
-  ] }) }, film.id)) });
+    ) }),
+    /* @__PURE__ */ jsxs(Box$1, { mt: 2, children: [
+      /* @__PURE__ */ jsx(Typography$1, { variant: "h1", children: movieData.title }),
+      /* @__PURE__ */ jsx(Typography$1, { variant: "body1", children: `Director: ${movieData.director}` }),
+      /* @__PURE__ */ jsx(Typography$1, { variant: "body1", children: `Created: ${movieData.created}` }),
+      /* @__PURE__ */ jsx(Typography$1, { variant: "body1", children: `plot: ${movieData.openingCrawl}` })
+    ] }),
+    /* @__PURE__ */ jsx(Box$1, { display: "grid", gap: 4, mt: 5, gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))", children: movieData.characterConnection.characters.map((character, index) => /* @__PURE__ */ jsxs(Box$1, { p: 2, borderRadius: 4, sx: { backgroundColor: "#f5f5f5" }, children: [
+      /* @__PURE__ */ jsx(
+        "img",
+        {
+          src: `https://source.unsplash.com/random/250x250?${character.name}`,
+          style: {
+            objectFit: "cover",
+            width: "100%",
+            aspectRatio: 1,
+            borderRadius: "16px"
+          }
+        }
+      ),
+      /* @__PURE__ */ jsx(Typography$1, { mt: 2, children: `name: ${character.name}` }),
+      /* @__PURE__ */ jsx(Typography$1, { children: `height: ${character.height}` }),
+      /* @__PURE__ */ jsx(Typography$1, { children: `gender: ${character.gender}` }),
+      /* @__PURE__ */ jsx(Typography$1, { children: `height: ${character.height}` }),
+      /* @__PURE__ */ jsx(Typography$1, { children: `hair color: ${character.hairColor}` }),
+      /* @__PURE__ */ jsx(Typography$1, { children: `home world: ${character.homeworld.name}` })
+    ] }, index)) })
+  ] });
 };
 
 const $$Astro = createAstro();
-const prerender = false;
-const $$Index = createComponent(async ($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
-  Astro2.self = $$Index;
+async function getStaticPaths() {
   const data = await fetch("https://swapi-graphql.netlify.app/.netlify/functions/index", {
     method: "POST",
     headers: {
@@ -3797,49 +3818,64 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
     },
     body: JSON.stringify({
       query: `
-      query Query {
-        allFilms {
-          films {
-            id
-            title
-            director
-            releaseDate
-            speciesConnection {
-              species {
-                name
-                classification
-                homeworld {
+        query Query {
+          allFilms {
+            films {
+              created
+              director
+              edited
+              id
+              openingCrawl
+              producers
+              releaseDate
+              title
+              characterConnection {
+                characters {
+                  birthYear
+                  created
+                  edited
+                  eyeColor
+                  gender
+                  hairColor
+                  height
+                  mass
                   name
+                  skinColor
+                  homeworld {
+                    name
+                  }
                 }
               }
             }
-            producers
-            episodeID
-            edited
-            created
           }
-          totalCount
         }
-      }
-    `
+      `
     })
   });
-  const movies = await data.json();
-  if (movies.errors) {
-    return Astro2.redirect("/404");
-  }
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Welcome to Astro." }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main> ${renderComponent($$result2, "Typography", Typography$1, {}, { "default": ($$result3) => renderTemplate`SSR` })} ${renderComponent($$result2, "Movies", Movies, { "moviesData": movies })} </main> ` })}`;
-}, "/Users/marcus.karrman/projects/astro-demo/astro-starwars/src/pages/ssr-movies/index.astro", void 0);
+  const json = await data.json();
+  return json.data.allFilms.films.map((film) => ({
+    params: { movieId: film.id },
+    props: { movieData: film }
+  }));
+}
+const $$movieId = createComponent(async ($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
+  Astro2.self = $$movieId;
+  Astro2.params;
+  const { movieData } = Astro2.props;
+  console.log("movieData", movieData);
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Welcome to Astro." }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main> ${renderComponent($$result2, "Movie", Movie, { "movieData": movieData })} </main> ` })}`;
+}, "/Users/marcus.karrman/projects/astro-demo/astro-starwars/src/pages/movies/[movieId].astro", void 0);
 
-const $$file = "/Users/marcus.karrman/projects/astro-demo/astro-starwars/src/pages/ssr-movies/index.astro";
-const $$url = "/ssr-movies";
+const $$file = "/Users/marcus.karrman/projects/astro-demo/astro-starwars/src/pages/movies/[movieId].astro";
+const $$url = "/movies/[movieId]";
 
-const index = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+const _movieId_ = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
-  default: $$Index,
+  default: $$movieId,
   file: $$file,
-  prerender,
+  getStaticPaths,
   url: $$url
 }, Symbol.toStringTag, { value: 'Module' }));
 
-export { $$Layout as $, Box$1 as B, Movies as M, Skeleton$1 as S, Typography$1 as T, Button$1 as a, index as i };
+export { $$Layout as $, Box$1 as B, Skeleton$1 as S, Typography$1 as T, _movieId_ as _, Button$1 as a };

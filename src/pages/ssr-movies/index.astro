@@ -5,6 +5,11 @@ import { Typography } from '@mui/material';
 
 export const prerender = false;
 
+if (import.meta.env.PROD) {
+  // Revalidation every 120 second.
+  Astro.locals.runtime.setBuildersTtl(120);
+}
+
 const data = await fetch("https://swapi-graphql.netlify.app/.netlify/functions/index", {
   method: 'POST',
   headers: {
@@ -53,6 +58,7 @@ if (movies.errors) {
 <Layout title="Welcome to Astro.">
 	<main>
     <Typography variant="h4" my={4}>SSR</Typography>
+    <Typography variant="body2" my={4}>{`Build was done: ${new Date()}`}</Typography>
     <Movies moviesData={movies} />
 	</main>
 </Layout>

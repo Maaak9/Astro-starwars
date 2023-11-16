@@ -3790,6 +3790,10 @@ const prerender = false;
 const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Index;
+  console.log("2222", Astro2.locals);
+  {
+    Astro2.locals.runtime.setBuildersTtl(120);
+  }
   const data = await fetch("https://swapi-graphql.netlify.app/.netlify/functions/index", {
     method: "POST",
     headers: {
@@ -3828,7 +3832,7 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   if (movies.errors) {
     return Astro2.redirect("/404");
   }
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Welcome to Astro." }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main> ${renderComponent($$result2, "Typography", Typography$1, { "variant": "h4", "my": 4 }, { "default": ($$result3) => renderTemplate`SSR` })} ${renderComponent($$result2, "Movies", Movies, { "moviesData": movies })} </main> ` })}`;
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Welcome to Astro." }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main> ${renderComponent($$result2, "Typography", Typography$1, { "variant": "h4", "my": 4 }, { "default": ($$result3) => renderTemplate`SSR` })} ${renderComponent($$result2, "Typography", Typography$1, { "variant": "body2", "my": 4 }, { "default": ($$result3) => renderTemplate`${`Build was done: ${ new Date()}`}` })} ${renderComponent($$result2, "Movies", Movies, { "moviesData": movies })} </main> ` })}`;
 }, "/Users/marcus.karrman/projects/astro-demo/astro-starwars/src/pages/ssr-movies/index.astro", void 0);
 
 const $$file = "/Users/marcus.karrman/projects/astro-demo/astro-starwars/src/pages/ssr-movies/index.astro";
