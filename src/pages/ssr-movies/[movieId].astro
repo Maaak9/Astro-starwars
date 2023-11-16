@@ -1,0 +1,61 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Movie from '../../components/movie/index';
+
+export const prerender = false;
+
+const { movieId } = Astro.params;
+
+const data = await fetch("https://swapi-graphql.netlify.app/.netlify/functions/index", {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    query: `
+      query Query($filmId: ID) {
+        film(id: $filmId) {
+          created
+          director
+          edited
+          id
+          openingCrawl
+          producers
+          releaseDate
+          title
+          characterConnection {
+            characters {
+              birthYear
+              created
+              edited
+              eyeColor
+              gender
+              hairColor
+              height
+              mass
+              name
+              skinColor
+              homeworld {
+                name
+              }
+            }
+          }
+        }
+      }
+    `,
+    variables: {
+      filmId: movieId,
+    }
+  })
+});
+
+const json = await data.json();
+const movieData = json.data.film
+
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+    <Movie movieData={movieData} />
+	</main>
+</Layout>
