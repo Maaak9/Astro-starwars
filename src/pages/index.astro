@@ -11,10 +11,14 @@ import OnlyMobile from "../components/content/only-mobile/index"
 		<SplitImage client:load />
 		<!-- This component won't render on the server, but will render on the
 		client when the page loads -->
-		<SplitImage imagePosition="right" client:only="react"/>
+		<SplitImage imagePosition="right"/>
 		<!-- Didnt work for some reason? -->
 		<!-- <OnlyMobile client:media='(max-width: 760px)'/> -->
-		<SplitImage />
+
+
+		<!-- This component won't render on the server, but will render on the
+		client when the page loads -->
+		<SplitImage client:only="react"/>
 		<!-- This component's JS will not be sent to the client until
 		the user scrolls down and the component is visible on the page -->
 		<ExpensiveComponent client:visible/>

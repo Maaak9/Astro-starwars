@@ -1,5 +1,3 @@
-import React from 'react';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { Box } from '@mui/material';
@@ -20,7 +18,7 @@ const SplitImage = ({
   const ImageContainer = () => (
     <Box>
       <img
-        src={`https://source.unsplash.com/random?star wars${Math.random()}}`}
+        src={`https://source.unsplash.com/random/560x378/?star wars${Math.floor(Math.random() * 10)}}`}
         alt="Your Image"
         style={{
           objectFit: 'cover',

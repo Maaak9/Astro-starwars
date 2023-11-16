@@ -16,7 +16,7 @@ const Movies = ({
         <a href={`/movies/${film.id}`} key={film.id} style={{ color: "inherit" }}>
           <Box p={2} borderRadius={4} sx={{ backgroundColor: "#f5f5f5" }}>
             <img
-              src={`https://source.unsplash.com/random?star wars${Math.random()}}`}
+              src={`https://source.unsplash.com/random/250x250/?star wars${Math.random()}}`}
               style={{
                 objectFit: 'cover',
                 width: '100%',

@@ -8,6 +8,20 @@ import VueButton from "../../vue/button/index.vue"
 
 <Layout title="Welcome to Astro.">
 	<main>
+    <Box my={10} display={"flex"} justifyContent={"center"}>
+      <Box sx={{ height: "300px", width: "300px" }}>
+        <img
+          src="/images/avatars/luke.jpeg"
+          alt="Your Image"
+          style={{
+            objectFit: 'cover',
+            width: '100%',
+            height: '100%',
+            aspectRatio: 3/2,
+          }}
+        />
+      </Box>
+    </Box>
     <Typography variant="h2" mt={10}>Without hydration</Typography>
     <Box display="flex" gap={4} my={10}>
       <ReactButton />

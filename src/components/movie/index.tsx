@@ -32,7 +32,7 @@ const Movie = ({
         {movieData.characterConnection.characters.map((character, index) => (
           <Box key={index} p={2} borderRadius={4} sx={{ backgroundColor: "#f5f5f5" }}>
             <img
-              src={`https://source.unsplash.com/random?${character.name}`}
+              src={`https://source.unsplash.com/random/250x250?${character.name}`}
               style={{
                 objectFit: 'cover',
                 width: '100%',
