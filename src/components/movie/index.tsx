@@ -10,14 +10,13 @@ const Movie = ({
 
   return (
     <Box>
-      <Box mt={3}>
+      <Box mt={3} display={"flex"} justifyContent={"right"}>
         <img
-          src={`https://source.unsplash.com/random?star wars movie ${Math.floor(Math.random() * 10)}}`}
-          alt="Your Image"
+          width={"100%"}
+          src="/images/img1.jpeg"
           style={{
             objectFit: 'cover',
-            width: '100%',
-            height: '100%',
+            height: "100%",
             aspectRatio: 3/1,
           }}
         />

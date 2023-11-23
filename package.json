@@ -27,5 +27,8 @@
     "svelte": "^4.2.3",
     "typescript": "^5.2.2",
     "vue": "^3.3.8"
+  },
+  "devDependencies": {
+    "sass": "^1.69.5"
   }
 }

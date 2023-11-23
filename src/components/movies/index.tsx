@@ -18,12 +18,12 @@ const Movies = ({
         <a href={`${url}${film.id}`} key={film.id} style={{ color: "inherit" }}>
           <Box p={2} borderRadius={4} sx={{ backgroundColor: "#f5f5f5" }}>
             <img
-              src={`https://source.unsplash.com/random/250x250/?star wars${Math.random()}}`}
+              src="/images/img1.jpeg"
               style={{
                 objectFit: 'cover',
                 width: '100%',
                 aspectRatio: 1,
-                borderRadius: "16px"
+                borderRadius: "16px",
               }}
             />
             <Typography mt={2}>{film.title}</Typography>

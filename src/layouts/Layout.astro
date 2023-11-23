@@ -2,6 +2,7 @@
 import Header from "../components/header/index";
 import Footer from "../components/footer/index";
 import { Container } from "@mui/material";
+import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
 	title: string;
@@ -19,10 +20,11 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<ViewTransitions />
 	</head>
 	<body>
-		<Header client:load />
-		<div style="min-height: 70vh;">
+		<Header />
+		<div style="min-height: 70vh;" transition:animate="fade">
 			<Container>
 				 <slot />
 			</Container>
